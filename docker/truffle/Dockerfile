@@ -12,6 +12,6 @@ WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY truffle .
 COPY launch.sh .
-COPY truffle_jenkins.js truffle.js
+COPY truffle/truffle-jenkins.js truffle.js
 
 CMD ["./launch.sh"]
