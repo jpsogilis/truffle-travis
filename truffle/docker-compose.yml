@@ -1,0 +1,15 @@
+version: '3'
+services:
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - "8545:8545"
+  truffle:
+    image: truffle:latest
+    command: bash -c "truffle test"
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ../:/app

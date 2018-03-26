@@ -1,0 +1,18 @@
+{
+  "name": "clive",
+  "version": "1.0.0",
+  "description": "clive",
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "babel-register": "^6.26.0",
+    "zeppelin-solidity": "^1.7.0"
+  },
+  "scripts": {
+    "test": "truffle test"
+  },
+  "author": "Jean-Pierre Geslin",
+  "license": "ISC"
+}
