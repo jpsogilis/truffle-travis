@@ -1,4 +1,4 @@
-@Library('workflowLibs') _
+@Library('workflowlib') _
 
 sqscDockerNode() {
   stage('tests') {
