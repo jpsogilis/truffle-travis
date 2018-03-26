@@ -2,6 +2,6 @@
 
 sqscDockerNode() {
   stage('tests') {
-    dockerStep(name: 'truffle', junitFile: 'truffle/test-results.xml')
+    dockerStep(name: 'truffle', junitFile: 'test-results.xml')
   }
 }
