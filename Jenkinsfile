@@ -14,10 +14,9 @@ sqscDockerNode() {
     dock.exec('truffle', 'truffle test')
   }
   stage('Junit publish') {
-      dock.unitTests('truffle', '/src/test-results.xml')
-  }
-  stage('Test junit') {
+    dock.cp('truffle', '/src/test-results.xml', 'tests.xml')
     junit 'tests.xml'
+  }
   }
   stage('Clean') {
       dock.stop('truffle')
