@@ -15,4 +15,4 @@ COPY --from=dependencies /src/node_modules node_modules/
 COPY truffle .
 COPY truffle/truffle-jenkins.js truffle.js
 
-ENTRYPOINT ["ganache-cli"]
+ENTRYPOINT ["bash"]
