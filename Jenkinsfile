@@ -12,4 +12,7 @@ sqscDockerNode() {
   stage('Junit publish') {
       dock.unitTest('truffle', 'test-results.xml')
   }
+  stage('Clean') {
+      dock.rm('truffle')
+  }
 }
