@@ -11,10 +11,10 @@ sqscDockerNode() {
     dock.exec('truffle', './launch-ganache.sh', '-itd')
   }
   stage('Smart-contract compilation') {
-    dock.exec('truffle', 'truffle compile', '-itd')
+    dock.exec('truffle', 'truffle compile')
   }
   stage('Running tests') {
-    dock.exec('truffle', 'truffle test', '-itd')
+    dock.exec('truffle', 'truffle test')
   }
   stage('Junit publish') {
     dock.cp('truffle', '/src/test-results.xml', 'tests.xml')
