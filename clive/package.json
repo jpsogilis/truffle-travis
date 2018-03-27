@@ -7,7 +7,9 @@
     "test": "test"
   },
   "dependencies": {
-    "babel-register": "^6.26.0",
+    "mocha": "",
+    "mocha-junit-reporter": "",
+    "babel-register": "",
     "zeppelin-solidity": "^1.7.0"
   },
   "scripts": {

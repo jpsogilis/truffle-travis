@@ -15,7 +15,7 @@ Then install OpenZeppelin library in root directory:
 ### Using docker
 You might have to use `sudo`.
 `docker build . -t truffle`
-`docker-compose -f docker-compose.yml up`
+``
 
 ### Using in local environment
 Launch Ganache alone:
