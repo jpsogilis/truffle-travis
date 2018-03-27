@@ -6,7 +6,7 @@ RUN npm install \
     && npm install mocha --save-dev \
     && npm install mocha-junit-reporter --save-dev
 
-FROM node:9
+FROM node:9-alpine
 RUN npm install -g truffle \
     && npm install -g ganache-cli
 RUN apk add --no-cache bash
