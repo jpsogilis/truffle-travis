@@ -5,16 +5,13 @@ sqscDockerNode() {
     dock.build('truffle')
   }
   stage('Run environement') {
-    dock.run('truffle', '-itd')
-  }
-  stage('Starting Ganache') {
-    dock.exec('truffle', './launch-ganache.sh', '-itd')
+    dock.run('truffle')
   }
   stage('Smart-contract compilation') {
-    dock.exec('truffle', 'truffle compile')
+    dock.exec('truffle', 'compile')
   }
   stage('Running tests') {
-    dock.exec('truffle', 'truffle test')
+    dock.exec('truffle', 'test')
   }
   stage('Junit publish') {
     dock.cp('truffle', '/src/test-results.xml', 'tests.xml')
