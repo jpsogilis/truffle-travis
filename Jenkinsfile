@@ -5,7 +5,7 @@ sqscDockerNode() {
     dock.build('truffle')
   }
   stage('Run environement') {
-    dock.run('truffle', '-itd')
+    dock.run('truffle', '-d')
   }
   stage('Smart-contract compilation') {
     dock.exec('truffle', 'truffle compile')
