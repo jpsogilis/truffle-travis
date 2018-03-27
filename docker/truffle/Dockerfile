@@ -14,4 +14,3 @@ COPY truffle .
 COPY launch.sh .
 
 ENTRYPOINT ["/bin/bash"]
-CMD ["./launch.sh"]
