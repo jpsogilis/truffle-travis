@@ -5,10 +5,14 @@ sqscDockerNode() {
     dock.build('truffle')
   }
   stage('Run environement') {
-      dock.run('truffle', '-id')
+    dock.run('truffle', '-d')
   }
-  dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile', dockerArgs: '-id')
-  dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'truffle test', dockerArgs: '-id')
+  stage('Smart-contract compilation') {
+    dock.exec('truffle', 'truffle compile')
+  }
+  stage('Running tests') {
+    dock.exec('truffle', 'truffle test')
+  }
   stage('Junit publish') {
       dock.unitTest('truffle', '/src/test-results.xml')
   }
