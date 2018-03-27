@@ -11,7 +11,7 @@ sqscDockerNode() {
   dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile', dockerArgs: '-i')
   dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'truffle test', dockerArgs: '-i')
   stage('Junit publish') {
-      dock.unitTest('truffle', 'test-results.xml')
+      dock.unitTest('truffle', '/src/test-results.xml')
   }
   stage('Clean') {
       dock.rm('truffle')
