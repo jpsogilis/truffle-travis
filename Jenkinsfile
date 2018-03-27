@@ -1,14 +1,15 @@
-@Library('workflowlib') _
+@Library('flowlib') _
 
 sqscDockerNode() {
   stage('Build image') {
-    dockerStepTest(
-      name: 'truffle',
-      dockerArgs: '-itd',
-      title1: 'Smart-contract compilation',
-      title2: 'Running tests', 
-      dockerCmd1: 'truffle compile',
-      dockerCmd2: 'ganache-cli & sleep 2s && truffle test',
-      junitFile: 'test-results.xml')
+    dock.build('truffle')
+  }
+  stage('Run environement') {
+      dock.run('truffle', null)
+  }
+  dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile')
+  dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'truffle test')
+  stage('Junit publish') {
+      dock.unitTest('truffle', 'test-results.xml')
   }
 }
