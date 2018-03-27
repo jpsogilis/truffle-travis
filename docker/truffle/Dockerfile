@@ -10,3 +10,4 @@ RUN apk add --no-cache bash
 WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY truffle .
+COPY truffle/truffle-jenkins.js truffle.js
