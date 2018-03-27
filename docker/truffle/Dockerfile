@@ -2,7 +2,9 @@ FROM node:9 as dependencies
 
 WORKDIR /src
 COPY truffle/package.json .
-RUN npm install
+RUN npm install \
+    && npm install mocha --save-dev \
+    && npm install mocha-junit-reporter --save-dev
 
 FROM trufflesuite/ganache-cli:latest
 RUN npm install -g truffle
