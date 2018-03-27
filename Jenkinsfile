@@ -8,10 +8,10 @@ sqscDockerNode() {
     dock.run('truffle')
   }
   stage('Smart-contract compilation') {
-    dock.exec('truffle', 'compile')
+    dock.exec('truffle', 'truffle compile')
   }
   stage('Running tests') {
-    dock.exec('truffle', 'test')
+    dock.exec('truffle', 'truffle test')
   }
   stage('Junit publish') {
     dock.cp('truffle', '/src/test-results.xml', 'tests.xml')
