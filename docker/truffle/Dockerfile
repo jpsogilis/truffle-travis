@@ -4,13 +4,9 @@ WORKDIR /src
 COPY truffle/package.json .
 RUN npm install
 
-FROM node:9-alpine
-RUN npm install -g truffle \
-    && npm install -g ganache-cli
+FROM trufflesuite/ganache-cli:latest
+RUN npm install -g truffle
 RUN apk add --no-cache bash
 WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY truffle .
-COPY launch.sh .
-
-ENTRYPOINT ["/bin/bash"]
