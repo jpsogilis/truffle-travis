@@ -5,7 +5,7 @@ sqscDockerNode() {
     dock.build('truffle')
   }
   stage('Run environement') {
-    dock.run('truffle', '-d')
+    dock.run('truffle', '-itd')
   }
   stage('Starting Ganache') {
     dock.exec('truffle', './launch.sh')
