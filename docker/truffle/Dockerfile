@@ -17,4 +17,4 @@ COPY launch-ganache.sh .
 COPY truffle/truffle-jenkins.js truffle.js
 
 CMD ["./launch-ganache.sh"]
-ENTRYPOINT ["truffle"]
+ENTRYPOINT ["truffle", "version"]
