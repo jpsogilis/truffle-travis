@@ -8,7 +8,7 @@ sqscDockerNode() {
     dock.run('truffle', '-itd')
   }
   stage('Starting Ganache') {
-    dock.exec('truffle', './launch.sh')
+    dock.exec('truffle', 'bash ./launch.sh')
   }
   stage('Smart-contract compilation') {
     dock.exec('truffle', 'truffle compile')
