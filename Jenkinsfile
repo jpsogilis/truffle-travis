@@ -5,7 +5,7 @@ sqscDockerNode() {
     dock.build('truffle')
   }
   stage('Run environement') {
-      dock.run('truffle', '-i')
+      dock.run('truffle', '-itd')
   }
   dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile')
   dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'ganache-cli & && truffle test')
