@@ -7,9 +7,9 @@ sqscDockerNode() {
   stage('Run environement') {
       dock.run('truffle', '-itd')
   }
-  dockerExec(name: 'truffle', titleExec: 'Launch Ganache', dockerCmd: 'ganache-cli &', dockerArgs: '-itd')
-  dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile', dockerArgs: '-itd')
-  dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'truffle test', dockerArgs: '-itd')
+  dockerExec(name: 'truffle', titleExec: 'Launch Ganache', dockerCmd: 'ganache-cli &', dockerArgs: '-it')
+  dockerExec(name: 'truffle', titleExec: 'Smart-contract compilation', dockerCmd: 'truffle compile', dockerArgs: '-it')
+  dockerExec(name: 'truffle', titleExec: 'Running tests', dockerCmd: 'truffle test', dockerArgs: '-it')
   stage('Junit publish') {
       dock.unitTest('truffle', 'test-results.xml')
   }
