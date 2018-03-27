@@ -2,7 +2,7 @@
 
 sqscDockerNode() {
   stage('Build image') {
-    dockerStep(
+    dockerStepTest(
       name: 'truffle',
       title1: 'Smart-contract compilation',
       title2: 'Running tests', 
