@@ -13,4 +13,4 @@ COPY --from=dependencies /src/node_modules node_modules/
 COPY truffle .
 COPY launch.sh .
 
-CMD ["./launch.sh"]
+CMD ["bash"]
