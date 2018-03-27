@@ -17,6 +17,7 @@ sqscDockerNode() {
       dock.unitTests('truffle', '/src/test-results.xml')
   }
   stage('Clean') {
+      dock.stop('truffle')
       dock.rm('truffle')
   }
 }
