@@ -13,9 +13,10 @@ Then install OpenZeppelin library in root directory:
 `npm install -E zeppelin-solidity`
 
 ### Using docker
-You might have to use `sudo`.
 
 ___
+
+You might have to use `sudo`.
 
 #### Build images:
 ```
@@ -79,6 +80,8 @@ If you want delete all images:
 
 `docker rmi $(docker images -a -q)`
 
+
+___
 
 ## Authors
 * **Jean-Pierre Geslin** - [jpsogilis](https://github.com/jpsogilis)
