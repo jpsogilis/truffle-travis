@@ -2,20 +2,12 @@
 
 sqscDockerNode() {
     stage('Build') {
-      steps {
-        dock.build('truffle')
-      }
-      steps {
-        dock.build('ganache')
-      }
+      dock.build('truffle')
+      dock.build('ganache')
     }
     stage('Run environements') {
-      steps {
-      	dock.run('ganache')
-      }
-      steps {
-      	dock.run('truffle', '-d --link ganache')
-      }
+      dock.run('ganache')
+      dock.run('truffle', '-d --link ganache')
     }
     stage('Smart-contract compilation') {
       dock.exec('truffle', 'truffle compile')
