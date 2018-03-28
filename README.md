@@ -32,6 +32,13 @@ This container can be launched alone.
 #### Truffle interactivity:
 `docker run -it -p 8080:8080 --link ganache --name truffle truffle`
 
+or with docker-compose:
+
+```
+docker-compose -f docker/docker-compose.yml up -d
+docker attach truffle
+```
+
 Inside container, launch truffle with `--network ganache` flag.
 
 For quit container enter exit.
