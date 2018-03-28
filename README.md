@@ -88,7 +88,7 @@ For tests:
 
 `docker run --rm --link ganache --name truffle truffle test --network ganache`
 
-Best practice to local development:
+### Best practice to local development:
 
 First install dependences:
 
