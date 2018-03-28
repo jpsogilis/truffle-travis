@@ -2,8 +2,8 @@
 
 sqscDockerNode() {
     stage('Build') {
-      dock.build('truffle_jenkins')
       dock.build('ganache')
+      dock.build('truffle_jenkins')
     }
     stage('Run environements') {
       dock.run('ganache', '-d')
