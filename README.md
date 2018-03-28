@@ -25,12 +25,12 @@ docker build -t truffle -f docker/truffle/Dockerfile .
 ```
 
 #### Launch ganache container:
-`docker run --name ganache -d ganache`
+`docker run -d -p 8545:8545 --name ganache ganache`
 
 This container can be launched alone.
 
 #### Truffle interactivity:
-`docker run -it --link ganache --name truffle truffle`
+`docker run -it -p 8080:8080 --link ganache --name truffle truffle`
 
 Inside container, launch truffle with `--network ganache` flag.
 
@@ -45,6 +45,13 @@ And call exec with your command:
 
 #### Log ganache:
 `docker logs ganache`
+
+#### Serve frontend:
+```
+docker exec truffle truffle compile --network ganache
+docker exec truffle npm run build
+docker exec truffle truffle serve --network ganache
+```
 
 #### Shutdown workspace:
 `docker stop ganache`

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ganache:
+    container_name: ganache
+    image: ganache
+    ports:
+      - "8545:8545"
+
+  truffle:
+    container_name: truffle
+    image: truffle
+    command: "sh"
+    stdin_open: true
+    tty: true
+    ports:
+      - "8080:8080"
