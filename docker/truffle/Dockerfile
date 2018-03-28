@@ -9,3 +9,4 @@ RUN npm install -g truffle
 WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY clive/ .
+COPY docker/truffle/cli.bundled.js /usr/local/lib/node_modules/truffle/build/cli.bundled.js 

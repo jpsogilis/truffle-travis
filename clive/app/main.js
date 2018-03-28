@@ -1,6 +1,6 @@
 import { default as Web3 } from 'web3'
 import { default as contract } from 'truffle-contract'
-import MetaCoinContract from '../build/contracts/MetaCoin.json'
+import CliveContract from '../build/contracts/Clive.json'
 
 const TESTRPC_HOST = 'localhost'
 const TESTRPC_PORT = '8545'
@@ -8,10 +8,10 @@ const TESTRPC_PORT = '8545'
 function component () {
   var element = document.createElement('div')
   let provider = new Web3.providers.HttpProvider(`http://${TESTRPC_HOST}:${TESTRPC_PORT}`)
-  let meta = contract(MetaCoinContract)
-  meta.setProvider(provider)
-  meta.deployed()
-    .then((instance) => { element.innerHTML = `Metacoin address: ${instance.address}` })
+  let clive = contract(CliveContract)
+  clive.setProvider(provider)
+  clive.deployed()
+    .then((instance) => { element.innerHTML = `Clive address: ${instance.address}` })
 
   return element
 }
