@@ -14,14 +14,47 @@ Then install OpenZeppelin library in root directory:
 
 ### Using docker
 You might have to use `sudo`.
-`docker build . -t truffle`
-``
 
-### Using in local environment
-Launch Ganache alone:
-`sudo docker run t trufflesuite/ganache-cli --rm`
-Launch truffle:
-`truffle [command] --network local`
+#### Build images:
+`docker build -t ganache -f docker/ganache/Dockerfile .`
+`docker build -t truffle -f docker/truffle/Dockerfile .`
+
+#### Launch ganache container:
+`docker run --name ganache -d ganache`
+This container can be launched alone.
+
+#### Truffle interactivly:
+`docker run -it --link ganache --name truffle truffle`
+
+#### Truffle remotly:
+`docker run -itd --link ganache --name truffle truffle`
+And call exec with your command:
+`docker exec truffle [command]`
+
+#### Truffle one shot commands:
+For compile:
+`docker run --rm --link ganache --name truffle truffle compile`
+For migrate:
+`docker run --rm --link ganache --name truffle truffle migrate --network [network]`
+For tests:
+`docker run --rm --link ganache --name truffle truffle test --network ganache`
+
+#### Shutdown workspace:
+`docker stop truffle`
+`docker stop ganache`
+
+#### Cleanup workspace:
+`docker rm truffle`
+`docker rm ganache`
+
+#### Tips:
+#####If you want stop all containers:
+`docker stop $(docker ps -a -q)`
+#####If you want delete all containers:
+`docker rm $(docker ps -a -q)`
+#####If you want delete all images:
+`docker rmi $(docker images -a -q)`
+
 
 ## Authors
 * **Jean-Pierre Geslin** - [jpsogilis](https://github.com/jpsogilis)

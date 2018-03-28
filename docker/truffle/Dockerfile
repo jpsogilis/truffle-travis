@@ -9,5 +9,3 @@ RUN npm install -g truffle
 WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY clive/ .
-
-ENTRYPOINT ["truffle"]
