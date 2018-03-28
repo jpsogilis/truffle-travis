@@ -6,7 +6,6 @@ RUN npm install
 
 FROM node:9-alpine
 RUN npm install -g truffle
-VOLUME /src
 WORKDIR /src
 COPY --from=dependencies /src/node_modules node_modules/
 COPY clive/ .

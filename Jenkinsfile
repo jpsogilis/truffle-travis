@@ -2,27 +2,27 @@
 
 sqscDockerNode() {
     stage('Build') {
-      dock.build('truffle')
+      dock.build('truffle_jenkins')
       dock.build('ganache')
     }
     stage('Run environements') {
       dock.run('ganache')
-      dock.run('truffle', '-d --link ganache')
+      dock.run('truffle_jenkins', '-d --link ganache')
     }
     stage('Smart-contract compilation') {
-      dock.exec('truffle', 'truffle compile')
+      dock.exec('truffle_jenkins', 'truffle compile')
     }
     stage('Running tests') {
-      dock.exec('truffle', 'truffle test')
+      dock.exec('truffle_jenkins', 'truffle test')
     }
     stage('Junit publish') {
-      dock.cp('truffle', '/src/test-results.xml', 'tests.xml')
+      dock.cp('truffle_jenkins', '/src/test-results.xml', 'tests.xml')
       junit 'tests.xml'
     }
     stage('Clean') {
-        dock.stop('truffle')
+        dock.stop('truffle_jenkins')
         dock.stop('ganache')
-        dock.rm('truffle')
+        dock.rm('truffle_jenkins')
         dock.rm('ganache')
     }
 }
