@@ -65,7 +65,7 @@ docker exec truffle truffle serve --network ganache
 #### Shutdown workspace:
 `docker stop ganache`
 
-`docker stop truffle` WARNING not if lanched in interactive.
+`docker stop truffle`  Caution ! Not if lanched in interactive.
 
 #### Cleanup workspace:
 ```
@@ -105,17 +105,19 @@ You don't need to rebuild image with this method.
 ***
 
 ### Tips:
-If you want stop all containers:
+Stop all containers:
 
 `docker stop $(docker ps -a -q)`
 
-If you want delete all containers:
+Delete all containers:
 
 `docker rm $(docker ps -a -q)`
 
-If you want delete all images:
+Delete all images:
 
 `docker rmi $(docker images -a -q)`
+
+Caution ! Thoses commands delete all containers/images on your machine.
 
 
 ___
