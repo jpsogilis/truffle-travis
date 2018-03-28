@@ -1,7 +1,6 @@
 @Library('workflowlib') _
 
 sqscDockerNode() {
-  stages {
     stage('Build') {
       steps {
         dock.build('truffle')
@@ -34,5 +33,4 @@ sqscDockerNode() {
         dock.rm('truffle')
         dock.rm('ganache')
     }
-  }
 }
