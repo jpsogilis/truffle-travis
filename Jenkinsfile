@@ -10,12 +10,12 @@ sqscDockerNode() {
       dock.run('truffle_jenkins', "-id --link ${dock.containerName('ganache')} -e 'RPC_HOST=${dock.containerName("ganache")}'")
     }
     stage('Smart-contract compilation') {
-      sh "docker exec ${containerName('truffle_jenkins'} truffle compile"
+      sh "docker exec ${containerName('truffle_jenkins')} truffle compile"
       //dock.exec('truffle_jenkins', 'truffle compile')
     }
     stage('Running tests') {
       //dock.exec('truffle_jenkins', 'truffle test')
-      sh "docker exec ${containerName('truffle_jenkins'} truffle test"
+      sh "docker exec ${containerName('truffle_jenkins')} truffle test"
       sh "docker logs ${dock.containerName('ganache')}"
     }
     stage('Junit publish') {
