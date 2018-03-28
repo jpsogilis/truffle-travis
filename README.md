@@ -32,12 +32,19 @@ This container can be launched alone.
 #### Truffle interactivity:
 `docker run -it --link ganache --name truffle truffle`
 
+Inside container, launch truffle with `--network ganache` flag.
+
+For quit container enter exit.
+
 #### Truffle remotly:
 `docker run -itd --link ganache --name truffle truffle`
 
 And call exec with your command:
 
-`docker exec truffle [command]`
+`docker exec truffle truffle [command] --network ganache`
+
+#### Log ganache:
+`docker logs ganache`
 
 #### Shutdown workspace:
 `docker stop ganache`

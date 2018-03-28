@@ -14,6 +14,7 @@ sqscDockerNode() {
     }
     stage('Running tests') {
       dock.exec('truffle_jenkins', 'truffle test')
+      sh "docker logs ${dock.containerName('ganache')}"
     }
     stage('Junit publish') {
       dock.cp('truffle_jenkins', '/src/test-results.xml', 'tests.xml')
