@@ -26,7 +26,7 @@ docker build -t truffle -f docker/truffle/Dockerfile .
 
 This container can be launched alone.
 
-#### Truffle interactivly:
+#### Truffle interactivity:
 `docker run -it --link ganache --name truffle truffle`
 
 #### Truffle remotly:
@@ -35,6 +35,18 @@ This container can be launched alone.
 And call exec with your command:
 
 `docker exec truffle [command]`
+
+#### Shutdown workspace:
+`docker stop ganache`
+
+`docker stop truffle` WARNING not if lanched in interactive.
+
+
+#### Cleanup workspace:
+```
+docker rm truffle
+docker rm ganache
+```
 
 #### Truffle one shot commands:
 For compile:
@@ -49,19 +61,7 @@ For tests:
 
 `docker run --rm --link ganache --name truffle truffle test --network ganache`
 
-#### Shutdown workspace:
-```
-docker stop truffle
-docker stop ganache
-```
-
-#### Cleanup workspace:
-```
-docker rm truffle
-docker rm ganache
-```
-
-#### Tips:
+### Tips:
 If you want stop all containers:
 
 `docker stop $(docker ps -a -q)`
