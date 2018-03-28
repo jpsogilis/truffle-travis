@@ -86,6 +86,20 @@ For tests:
 
 `docker run --rm --link ganache --name truffle truffle test --network ganache`
 
+Best practice to local development:
+
+First install dependences:
+
+`cd clive && npm install`
+
+And let's do it:
+
+```
+docker run --rm -v "`echo -n $PWD`:/src" --link ganache --name truffle truffle truffle test --network ganache
+```
+
+You don't need to rebuild image with this method.
+
 ***
 
 ### Tips:
