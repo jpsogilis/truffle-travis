@@ -27,6 +27,8 @@ docker build -t truffle -f docker/truffle/Dockerfile .
 #### Launch ganache container:
 `docker run -d -p 8545:8545 --name ganache ganache`
 
+You need to launch this container before use truffle container except if you launch docker-compose.
+
 This container can be launched alone.
 
 #### Truffle interactivity:
@@ -95,7 +97,7 @@ First install dependences:
 And let's do it:
 
 ```
-docker run --rm -v "`echo -n $PWD`:/src" --link ganache --name truffle truffle truffle test --network ganache
+docker run --rm -v "`echo -n $PWD`:/src" -p 8080:8080 --link ganache --name truffle truffle truffle test --network ganache
 ```
 
 You don't need to rebuild image with this method.
