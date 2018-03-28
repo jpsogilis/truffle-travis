@@ -1,7 +1,7 @@
 FROM node:9 as dependencies
 
 WORKDIR /src
-COPY truffle/package.json .
+COPY clive/package.json .
 RUN npm install
 
 FROM node:9-alpine
