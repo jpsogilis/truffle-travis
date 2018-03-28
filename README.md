@@ -15,6 +15,8 @@ Then install OpenZeppelin library in root directory:
 ### Using docker
 You might have to use `sudo`.
 
+___
+
 #### Build images:
 ```
 docker build -t ganache -f docker/ganache/Dockerfile .
@@ -41,12 +43,13 @@ And call exec with your command:
 
 `docker stop truffle` WARNING not if lanched in interactive.
 
-
 #### Cleanup workspace:
 ```
 docker rm truffle
 docker rm ganache
 ```
+
+---
 
 #### Truffle one shot commands:
 For compile:
@@ -60,6 +63,8 @@ For migrate:
 For tests:
 
 `docker run --rm --link ganache --name truffle truffle test --network ganache`
+
+***
 
 ### Tips:
 If you want stop all containers:
