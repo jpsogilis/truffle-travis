@@ -12,7 +12,7 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
     describe('initialSupply is 3000000.', function () {
       it("should set initial supply correctly.", async function () {
         const initialSupply = await this.token.totalSupply();    
-        assert.equal(initialSupply, 3000000, "Total supply was not well intialized.");
+        assert.equal(Number(initialSupply), 3000000, "Total supply was not well intialized.");
       });
     });
   });
@@ -20,14 +20,14 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
     describe('- When the requested account has no tokens:', function () {
       it('Requested account amount is null.', async function () {
         const balance = await this.token.balanceOf(anotherAccount);
-        assert.equal(balance, 0, "Requested account have tokens whereas he was supposed to be null");
+        assert.equal(Number(balance), 0, "Requested account have tokens whereas he was supposed to be null");
       });
     });
 
     describe('- When the requested account has some tokens:', function () {
       it('Requested account amount equal to total amount of tokens.', async function () {
         const balance = await this.token.balanceOf(owner);
-        assert.equal(balance, 3000000, "Requested account amount is not equal to total amount of token.");
+        assert.equal(Number(balance), 3000000, "Requested account amount is not equal to total amount of tokens.");
       });
     });
   });
@@ -37,7 +37,7 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
 
       describe('# When the sender does not have enough balance:', function () {
         const amount = 3000001;
-        it('Clive transacion failed.', async function () {
+        it('Clive transfer failed.', async function () {
           await assertRevert(this.token.transfer(to, amount, { from: owner }));
         });
       });
@@ -45,19 +45,19 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
       describe('# When the sender has enough balance:', function () {
         const amount = 1000000;
 
-	describe('-> Owner send 1000000 to recipient account.', function () {
+	describe('-> Owner sends 1000000 to recipient account.', function () {
           it('[LOG1] Transfer amount correctly.', async function () {
             const { logs } = await this.token.transfer(to, amount, { from: owner });
             
             const senderBalance = await this.token.balanceOf(owner);
             const recipientBalance = await this.token.balanceOf(to);
 
-            assert.equal(senderBalance, 2000000, 'Sender do not debit amount ('+amount+' Clives).');
-            assert.equal(recipientBalance, amount, 'Sender do not debit amount ('+amount+' Clives).');
-            console.log("\t      [LOG1] Log anchor data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\
-                                           Owner balance = "+senderBalance+",\n\
-                                           Recipient balance = "+recipientBalance+",\n\
-                                           Amount = "+logs[0].args.value+" Clives\n\t\t\t\t\t}");
+            assert.equal(Number(senderBalance), 2000000, 'Sender does not debit amount ('+amount+' Clives).');
+            assert.equal(Number(recipientBalance), amount, 'Sender does not debit amount ('+amount+' Clives).');
+            console.log("\t      [LOG1] Anchored data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\
+                                           owner balance = "+senderBalance+",\n\
+                                           recipient balance = "+recipientBalance+",\n\
+                                           amount = "+logs[0].args.value+" Clives\n\t\t\t\t\t}");
 
           });
 	});
@@ -70,7 +70,7 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
           assert.equal(logs[0].args.from, owner);
           assert.equal(logs[0].args.to, to);
           assert(logs[0].args.value.eq(amount));
-          console.log("\t    [LOG2] Log anchor data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\
+          console.log("\t    [LOG2] Anchored data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\
                                            event = "+logs[0].event+",\n\
                                            owner address = "+logs[0].args.from+",\n\
                                            recipient address = "+logs[0].args.to+",\n\
@@ -98,7 +98,7 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
         await this.token.burn(amount, { from });
 
         const balance = await this.token.balanceOf(from);
-        assert.equal(balance, 2000000);
+        assert.equal(Number(balance), 2000000);
       });
 
       it('[LOG3] Emits a burn event', async function () {
@@ -113,7 +113,7 @@ contract('Clive', function ([owner, recipient, anotherAccount]) {
         assert.equal(logs[1].args.from, owner);
         assert.equal(logs[1].args.to, ZERO_ADDRESS);
         assert.equal(logs[1].args.value, amount);
-        console.log("\t  [LOG3] Log anchor data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\t\t\t\t\t  {\n\
+        console.log("\t  [LOG3] Anchored data in BlockChain =>"+"\n"+"\t\t\t\t\t{\n\t\t\t\t\t  {\n\
                                              event = "+logs[0].event+",\n\
                                              burner address = "+logs[0].args.burner+",\n\
                                              amount = "+logs[0].args.value+" Clives\n\t\t\t\t\t  },\n\n\t\t\t\t\t  {\n\

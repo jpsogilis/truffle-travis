@@ -1,4 +1,4 @@
-@Library('workflowlib') _
+@Library('workflowLibs') _
 
 sqscDockerNode() {
     stage('Build') {
@@ -11,10 +11,8 @@ sqscDockerNode() {
     }
     stage('Smart-contract compilation') {
       sh "docker exec ${dock.containerName('truffle_jenkins')} truffle compile"
-      //dock.exec('truffle_jenkins', 'truffle compile')
     }
     stage('Running tests') {
-      //dock.exec('truffle_jenkins', 'truffle test')
       sh "docker exec ${dock.containerName('truffle_jenkins')} truffle test"
       sh "docker logs ${dock.containerName('ganache')}"
     }
@@ -23,8 +21,8 @@ sqscDockerNode() {
       junit 'tests.xml'
     }
     stage('Clean') {
-        dock.stop('truffle_jenkins')
-        dock.stop('ganache')
+        sh "docker stop ${dock.containerName('truffle_jenkins')}"
+        sh "docker stop ${dock.containerName('ganache')}"
         dock.rm('truffle_jenkins')
         dock.rm('ganache')
     }

@@ -1,35 +1,44 @@
 # squarescale-smart-contracts
 Smart contracts for SquareScale ICO
 
+___
+
 ## Getting Started
 
 ### Prerequisites
 This project makes use of Nodejs and Npm in its installation.
 
-Integration with [Truffle](https://github.com/ConsenSys/truffle), as Ethereum development environment, is recommended.
-`npm install -g truffle`
-
-Then install OpenZeppelin library in root directory:
-`npm install -E zeppelin-solidity`
-
-### Using docker
-
-___
-
-You might have to use `sudo`.
-
-#### Build images:
+### Build images:
 ```
 docker build -t ganache -f docker/ganache/Dockerfile .
 docker build -t truffle -f docker/truffle/Dockerfile .
 ```
 
-#### Launch ganache container:
+### Launch ganache container:
 `docker run -d -p 8545:8545 --name ganache ganache`
 
 You need to launch this container before use truffle container except if you launch docker-compose.
 
 This container can be launched alone.
+
+### Best practice to local development:
+
+First install dependences:
+
+`cd clive && npm install`
+
+And let's do it:
+
+```
+docker run --rm -v "`echo -n $PWD`:/src" -p 8080:8080 --link ganache --name truffle truffle truffle test --network ganache
+```
+
+You don't need to rebuild image with this method.
+
+___
+
+
+## Custom commands
 
 #### Truffle interactivity:
 `docker run -it -p 8080:8080 --link ganache --name truffle truffle`
@@ -45,29 +54,29 @@ Inside container, launch truffle with `--network ganache` flag.
 
 For quit container enter exit.
 
-#### Truffle remotly:
+### Truffle remotly:
 `docker run -itd --link ganache --name truffle truffle`
 
 And call exec with your command:
 
 `docker exec truffle truffle [command] --network ganache`
 
-#### Log ganache:
+### Log ganache:
 `docker logs ganache`
 
-#### Serve frontend:
+### Serve frontend:
 ```
 docker exec truffle truffle compile --network ganache
 docker exec truffle npm run build
 docker exec truffle truffle serve --network ganache
 ```
 
-#### Shutdown workspace:
+### Shutdown workspace:
 `docker stop ganache`
 
 `docker stop truffle`  Caution ! Not if lanched in interactive.
 
-#### Cleanup workspace:
+### Cleanup workspace:
 ```
 docker rm truffle
 docker rm ganache
@@ -88,19 +97,6 @@ For tests:
 
 `docker run --rm --link ganache --name truffle truffle test --network ganache`
 
-### Best practice to local development:
-
-First install dependences:
-
-`cd clive && npm install`
-
-And let's do it:
-
-```
-docker run --rm -v "`echo -n $PWD`:/src" -p 8080:8080 --link ganache --name truffle truffle truffle test --network ganache
-```
-
-You don't need to rebuild image with this method.
 
 ***
 
